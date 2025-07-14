@@ -1,5 +1,7 @@
 package exercises.banking_system_transfer.entities;
 
+import exercises.banking_system_transfer.exceptions.DomainException;
+
 import java.util.List;
 
 public class Account {
@@ -11,6 +13,9 @@ public class Account {
     public Account(String holder, Integer number, Double balance) {
         this.holder = holder;
         this.number = number;
+        if (balance < 0) {
+            throw new DomainException("CANNOT add negative value");
+        }
         this.balance = balance;
     }
 
@@ -42,7 +47,6 @@ public class Account {
     public void withdraw(double amount) {
         balance -= amount;
     }
-
 
 
     @Override
